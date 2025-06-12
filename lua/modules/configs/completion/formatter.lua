@@ -9,7 +9,7 @@ return function()
 			css = { "prettier" },
 			html = { "prettier" },
 			json = { "prettier" },
-			yaml = { "prettier" },
+			yaml = { "yamlfmt" },
 			markdown = { "prettier" },
 			graphql = { "prettier" },
 			lua = { "stylua" },
