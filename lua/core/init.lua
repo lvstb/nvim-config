@@ -63,7 +63,7 @@ local disable_distribution_plugins = function()
 	vim.g.loaded_sql_completion = 1
 
 	-- Disable EditorConfig support
-	vim.g.editorconfig = 1
+	vim.g.editorconfig = true
 
 	-- Disable remote plugins
 	-- NOTE: Disabling rplugin.vim will show error for `wilder.nvim` in :checkhealth,
@@ -151,4 +151,3 @@ local load_core = function()
 end
 
 load_core()
-
