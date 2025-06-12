@@ -43,8 +43,5 @@ ui["machakann/vim-sandwich"] = {
 	lazy = true,
 	event = "BufReadPost",
 }
-ui["stevearc/dressing.nvim"] = {
-	opts = {},
-}
 
 return ui
