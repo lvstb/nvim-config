@@ -1,6 +1,7 @@
 return {
 	settings = {
 		filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab", "yaml.helm-values" },
+		cmd = { "yaml-language-server", "--stdio" }, -- Make sure this matches the executable name
 		yaml = {
 			keyOrdering = false,
 			-- 		format = {
