@@ -40,7 +40,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		"lspinfo",
 		"terminal",
 		"prompt",
-		"toggleterm",
 		"copilot",
 		"startuptime",
 		"tsplayground",
