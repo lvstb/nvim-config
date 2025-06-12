@@ -1,7 +1,7 @@
 return {
+	cmd = { "yaml-language-server", "--stdio" }, -- Move this to top level
+	filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab", "yaml.helm-values" }, -- Move this to top level
 	settings = {
-		filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab", "yaml.helm-values" },
-		cmd = { "yaml-language-server", "--stdio" }, -- Make sure this matches the executable name
 		yaml = {
 			keyOrdering = false,
 			-- 		format = {
