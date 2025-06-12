@@ -9,7 +9,7 @@ tool["folke/snacks.nvim"] = {
 		-- or leave it empty to use the default settings
 		-- refer to the configuration section below
 		bigfile = { enabled = true },
-		dashboard = { enabled = true },
+		dashboard = { enabled = false },
 		explorer = { enabled = true },
 		indent = { enabled = true },
 		input = { enabled = true },
@@ -26,17 +26,17 @@ tool["tpope/vim-fugitive"] = {
 	lazy = true,
 	cmd = { "Git", "G" },
 }
-tool["nvim-tree/nvim-tree.lua"] = {
-	lazy = true,
-	cmd = {
-		"NvimTreeToggle",
-		"NvimTreeOpen",
-		"NvimTreeFindFile",
-		"NvimTreeFindFileToggle",
-		"NvimTreeRefresh",
-	},
-	config = require("tool.nvim-tree"),
-}
+-- tool["nvim-tree/nvim-tree.lua"] = {
+-- 	lazy = true,
+-- 	cmd = {
+-- 		"NvimTreeToggle",
+-- 		"NvimTreeOpen",
+-- 		"NvimTreeFindFile",
+-- 		"NvimTreeFindFileToggle",
+-- 		"NvimTreeRefresh",
+-- 	},
+-- 	config = require("tool.nvim-tree"),
+-- }
 tool["ibhagwan/smartyank.nvim"] = {
 	lazy = true,
 	event = "BufReadPost",
