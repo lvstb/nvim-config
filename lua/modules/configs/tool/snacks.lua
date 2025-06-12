@@ -1,20 +1,91 @@
 return function()
 	require("snacks").setup({
 		bigfile = { enabled = true },
-		dashboard = { enabled = false },
+		dashboard = { enabled = true },
 		explorer = { enabled = true },
-		indent = { enabled = false },
+		indent = {
+			enabled = true,
+			char = "│", -- matches your char[1]
+			only_scope = false,
+			only_current = false,
+			hl = "SnacksIndent", -- equivalent to your IblIndent
+			priority = 1,
+			-- Scope configuration (equivalent to your scope settings)
+			scope = {
+				enabled = true,
+				char = "┃", -- matches your char[2] for scope
+				hl = "SnacksIndentScope", -- equivalent to your IblScope
+				priority = 200,
+				underline = false,
+				only_current = false,
+			},
+			-- Animation settings
+			animate = {
+				enabled = vim.fn.has("nvim-0.10") == 1,
+				style = "out",
+				easing = "linear",
+				duration = {
+					step = 20,
+					total = 500,
+				},
+			},
+			-- Filter equivalent to your exclude settings
+			filter = function(buf)
+				local excluded_filetypes = {
+					"NvimTree",
+					"TelescopePrompt",
+					"dashboard",
+					"dotooagenda",
+					"flutterToolsOutline",
+					"fugitive",
+					"git",
+					"gitcommit",
+					"help",
+					"json",
+					"log",
+					"markdown",
+					"peekaboo",
+					"startify",
+					"todoist",
+					"txt",
+					"vimwiki",
+					"vista",
+				}
+				local excluded_buftypes = {
+					"terminal",
+					"nofile",
+				}
+
+				local ft = vim.bo[buf].filetype
+				local bt = vim.bo[buf].buftype
+
+				-- Check if filetype or buftype is excluded
+				for _, excluded_ft in ipairs(excluded_filetypes) do
+					if ft == excluded_ft then
+						return false
+					end
+				end
+
+				for _, excluded_bt in ipairs(excluded_buftypes) do
+					if bt == excluded_bt then
+						return false
+					end
+				end
+
+				return vim.g.snacks_indent ~= false and vim.b[buf].snacks_indent ~= false and vim.bo[buf].buftype == ""
+			end,
+		},
 		input = { enabled = true },
 		notifier = {
 			enabled = true,
 			timeout = 3000,
 		},
 		picker = {
-			enabled = false,
+			enabled = false, -- you disabled this
 		},
 		quickfile = { enabled = true },
 		scope = { enabled = true },
-		scroll = { enabled = true },
+		scroll = { enabled = false },
 		statuscolumn = { enabled = true },
 		words = { enabled = true },
 		styles = {
