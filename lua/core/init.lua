@@ -62,7 +62,7 @@ local disable_distribution_plugins = function()
 	-- Disable sql omni completion.
 	vim.g.loaded_sql_completion = 1
 
-	-- Disable EditorConfig support
+	-- Enable EditorConfig support
 	vim.g.editorconfig = true
 
 	-- Disable remote plugins
