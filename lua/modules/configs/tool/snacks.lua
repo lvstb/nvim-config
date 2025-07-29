@@ -1,7 +1,7 @@
 return function()
 	require("snacks").setup({
 		bigfile = { enabled = true },
-		dashboard = { enabled = true },
+		dashboard = { enabled = false },
 		explorer = { enabled = true },
 		indent = {
 			enabled = true,
@@ -32,7 +32,7 @@ return function()
 			-- Filter equivalent to your exclude settings
 			filter = function(buf)
 				local excluded_filetypes = {
-					"NvimTree",
+
 					"TelescopePrompt",
 					"dashboard",
 					"dotooagenda",
@@ -77,8 +77,7 @@ return function()
 		},
 		input = { enabled = true },
 		notifier = {
-			enabled = true,
-			timeout = 3000,
+			enabled = false,
 		},
 		picker = {
 			enabled = false, -- you disabled this
@@ -86,7 +85,7 @@ return function()
 		quickfile = { enabled = true },
 		scope = { enabled = true },
 		scroll = { enabled = false },
-		statuscolumn = { enabled = true },
+		statuscolumn = { enabled = false },
 		words = { enabled = true },
 		styles = {
 			notification = {

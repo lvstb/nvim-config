@@ -1,6 +1,6 @@
 return function()
 	local lualine = require("lualine")
-	local utils = require("utils")
+	local utils = require("modules.utils")
 
 	local conditions = {
 		buffer_not_empty = function()
@@ -45,7 +45,6 @@ return function()
 		},
 		extensions = {
 			"quickfix",
-			"nvim-tree",
 			"nvim-dap-ui",
 			"toggleterm",
 			"fugitive",

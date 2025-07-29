@@ -105,3 +105,5 @@ _G.get_statuscol = function()
 
 	return table.concat(str_table)
 end
+
+vim.opt.statuscolumn = "%!v:lua.get_statuscol()"
