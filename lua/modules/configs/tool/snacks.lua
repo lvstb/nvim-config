@@ -138,5 +138,5 @@ return function()
 	end, { desc = "Toggle terminal (cwd)" })
 
 	-- Replace vim.notify with Snacks notifier
-	vim.notify = Snacks.notify
+	vim.notify = Snacks.notify.notify
 end
