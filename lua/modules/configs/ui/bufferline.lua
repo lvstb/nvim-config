@@ -48,20 +48,7 @@ return function()
 		local cp = require("modules.utils").get_palette() -- Get the palette.
 
 		local catppuccin_hl_overwrite = {
-			highlights = require("catppuccin.groups.integrations.bufferline").get({
-				styles = { "italic", "bold" },
-				custom = {
-					mocha = {
-						-- Hint
-						hint = { fg = cp.rosewater },
-						hint_visible = { fg = cp.rosewater },
-						hint_selected = { fg = cp.rosewater },
-						hint_diagnostic = { fg = cp.rosewater },
-						hint_diagnostic_visible = { fg = cp.rosewater },
-						hint_diagnostic_selected = { fg = cp.rosewater },
-					},
-				},
-			}),
+			highlights = require("catppuccin.groups.integrations.bufferline"),
 		}
 
 		opts = vim.tbl_deep_extend("force", opts, catppuccin_hl_overwrite)
