@@ -47,12 +47,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local function restart_lsp(bufnr)
     bufnr = bufnr or vim.api.nvim_get_current_buf()
     local clients
-    if vim.lsp.get_clients then
-        clients = vim.lsp.get_clients({ bufnr = bufnr })
-    else
-        ---@diagnostic disable-next-line: deprecated
-        clients = vim.lsp.get_active_clients({ bufnr = bufnr })
-    end
+    clients = vim.lsp.get_clients({ bufnr = bufnr })
 
     for _, client in ipairs(clients) do
         vim.lsp.stop_client(client.id)
@@ -69,8 +64,7 @@ end, {})
 
 local function lsp_status()
     local bufnr = vim.api.nvim_get_current_buf()
-    local clients = vim.lsp.get_clients and vim.lsp.get_clients({ bufnr = bufnr })
-        or vim.lsp.get_active_clients({ bufnr = bufnr })
+    local clients = vim.lsp.get_clients({ bufnr = bufnr })
 
     if #clients == 0 then
         print("󰅚 No LSP clients attached")
@@ -119,8 +113,7 @@ vim.api.nvim_create_user_command("LspStatus", lsp_status, { desc = "Show detaile
 
 local function check_lsp_capabilities()
     local bufnr = vim.api.nvim_get_current_buf()
-    local clients = vim.lsp.get_clients and vim.lsp.get_clients({ bufnr = bufnr })
-        or vim.lsp.get_active_clients({ bufnr = bufnr })
+    local clients = vim.lsp.get_clients({ bufnr = bufnr })
 
     if #clients == 0 then
         print("No LSP clients attached")
@@ -185,8 +178,7 @@ vim.api.nvim_create_user_command("LspDiagnostics", lsp_diagnostics_info, { desc 
 
 local function lsp_info()
     local bufnr = vim.api.nvim_get_current_buf()
-    local clients = vim.lsp.get_clients and vim.lsp.get_clients({ bufnr = bufnr })
-        or vim.lsp.get_active_clients({ bufnr = bufnr })
+    local clients = vim.lsp.get_clients({ bufnr = bufnr })
 
     print("═══════════════════════════════════")
     print("           LSP INFORMATION          ")
