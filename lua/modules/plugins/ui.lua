@@ -18,6 +18,7 @@ ui["akinsho/bufferline.nvim"] = {
 	lazy = true,
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
 	config = require("ui.bufferline"),
+	dependencies = { "catppuccin" },
 }
 ui["catppuccin/nvim"] = {
 	lazy = false,

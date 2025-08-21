@@ -44,8 +44,11 @@ return function()
 		highlights = {},
 	}
 
-	if vim.g.colors_name:find("catppuccin") then
-		opts.highlights = require("catppuccin.groups.integrations.bufferline")()
+	if vim.g.colors_name and vim.g.colors_name:find("catppuccin") then
+		local ok, bufferline_theme = pcall(require, "catppuccin.groups.integrations.bufferline")
+		if ok and type(bufferline_theme) == "function" then
+			opts.highlights = bufferline_theme()
+		end
 	end
 
 	require("bufferline").setup(opts)
