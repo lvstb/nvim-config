@@ -47,7 +47,6 @@ return function()
 		extensions = {
 			"quickfix",
 			"nvim-dap-ui",
-			"snacks_terminal",
 			"fugitive",
 			outline,
 			diffview,
