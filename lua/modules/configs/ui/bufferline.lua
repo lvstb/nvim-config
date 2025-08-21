@@ -45,13 +45,7 @@ return function()
 	}
 
 	if vim.g.colors_name:find("catppuccin") then
-		local cp = require("modules.utils").get_palette() -- Get the palette.
-
-		local catppuccin_hl_overwrite = {
-			highlights = require("catppuccin.groups.integrations.bufferline"),
-		}
-
-		opts = vim.tbl_deep_extend("force", opts, catppuccin_hl_overwrite)
+		opts.highlights = require("catppuccin.groups.integrations.bufferline")()
 	end
 
 	require("bufferline").setup(opts)
