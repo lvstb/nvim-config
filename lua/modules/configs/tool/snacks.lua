@@ -77,15 +77,34 @@ return function()
 		},
 		input = { enabled = true },
 		notifier = {
-			enabled = false,
+			enabled = true,
+			timeout = 3000,
+			width = { min = 40, max = 0.4 },
+			height = { min = 1, max = 0.6 },
+			-- Icons for notification levels
+			icons = {
+				error = "󰅚 ",
+				warn = "󰀪 ",
+				info = "󰋽 ",
+				debug = "󰃤 ",
+				trace = "󰓗 ",
+			},
 		},
 		picker = {
 			enabled = false, -- you disabled this
 		},
 		quickfile = { enabled = true },
 		scope = { enabled = true },
-		scroll = { enabled = false },
+		scroll = { enabled = true },
 		statuscolumn = { enabled = false },
+		terminal = {
+			enabled = true,
+			win = {
+				position = "bottom",
+				height = 0.3,
+				border = "rounded",
+			},
+		},
 		words = { enabled = true },
 		styles = {
 			notification = {
@@ -108,4 +127,16 @@ return function()
 	Snacks.toggle.inlay_hints():map("<leader>uh")
 	Snacks.toggle.indent():map("<leader>ug")
 	Snacks.toggle.dim():map("<leader>uD")
+
+	-- Set up keymaps for terminal
+	vim.keymap.set("n", "<leader>tt", function()
+		Snacks.terminal.toggle()
+	end, { desc = "Toggle terminal" })
+
+	vim.keymap.set("n", "<leader>tT", function()
+		Snacks.terminal.toggle(nil, { cwd = vim.fn.expand("%:p:h") })
+	end, { desc = "Toggle terminal (cwd)" })
+
+	-- Replace vim.notify with Snacks notifier
+	vim.notify = Snacks.notify
 end

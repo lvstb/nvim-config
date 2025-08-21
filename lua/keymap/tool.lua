@@ -66,12 +66,10 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("find: Project"),
-	["n|<leader>fr"] = map_callback(function()
-			require("telescope").extensions.frecency.frecency()
-		end)
+	["n|<leader>fr"] = map_cu("Telescope oldfiles")
 		:with_noremap()
 		:with_silent()
-		:with_desc("find: File by frecency"),
+		:with_desc("find: Recent files"),
 	["n|<leader>fw"] = map_callback(function()
 			require("telescope").extensions.live_grep_args.live_grep_args()
 		end)

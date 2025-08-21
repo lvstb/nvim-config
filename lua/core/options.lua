@@ -100,6 +100,7 @@ local function load_options()
 		wrap = false,
 		wrapscan = true,
 		writebackup = false,
+		smoothscroll = true,
 	}
 	local function isempty(s)
 		return s == nil or s == ""

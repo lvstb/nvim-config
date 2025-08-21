@@ -47,7 +47,7 @@ return function()
 		extensions = {
 			"quickfix",
 			"nvim-dap-ui",
-			"toggleterm",
+			"snacks_terminal",
 			"fugitive",
 			outline,
 			diffview,
@@ -262,7 +262,7 @@ end
 -- 	local function lspsaga_symbols()
 -- 		local exclude = {
 -- 			["terminal"] = true,
--- 			["toggleterm"] = true,
+-- 			["snacks_terminal"] = true,
 -- 			["prompt"] = true,
 -- 			["NvimTree"] = true,
 -- 			["help"] = true,
@@ -407,7 +407,7 @@ end
 -- 			"quickfix",
 -- 			"nvim-tree",
 -- 			"nvim-dap-ui",
--- 			"toggleterm",
+-- 			"snacks_terminal",
 -- 			"fugitive",
 -- 			outline,
 -- 			diffview,

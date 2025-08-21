@@ -9,7 +9,6 @@ return function()
 		filetypes_denylist = {
 			"DoomInfo",
 			"DressingSelect",
-			"NvimTree",
 			"Outline",
 			"TelescopePrompt",
 			"Trouble",
@@ -21,7 +20,7 @@ return function()
 			"lsgsagaoutline",
 			"neogitstatus",
 			"norg",
-			"toggleterm",
+			"snacks_terminal",
 		},
 		under_cursor = false,
 	})
