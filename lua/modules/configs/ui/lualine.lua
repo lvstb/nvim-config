@@ -1,6 +1,7 @@
 return function()
 	local lualine = require("lualine")
 	local utils = require("modules.utils")
+	local colors = utils.get_palette()
 
 	local conditions = {
 		buffer_not_empty = function()
