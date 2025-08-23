@@ -19,7 +19,7 @@ completion["saghen/blink.cmp"] = {
 		"rafamadriz/friendly-snippets",
 		"saghen/blink.compat",
 		"onsails/lspkind.nvim",
-		"giu/blink-cmp-copilot",
+		"giuxtaposition/blink-cmp-copilot",
 	},
 	version = "*",
 	config = require("completion.blink"),
