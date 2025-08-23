@@ -6,6 +6,7 @@ return function()
 			suggestion = {
 				enabled = true,
 				auto_trigger = true,
+				hide_during_completion = false, -- Keep Copilot visible when completion menu is open
 				-- Use alt to interact with Copilot.
 				keymap = {
 					-- Re-enable accept since we're not using nvim-cmp integration

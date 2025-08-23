@@ -19,7 +19,6 @@ completion["saghen/blink.cmp"] = {
 		"rafamadriz/friendly-snippets",
 		"saghen/blink.compat",
 		"onsails/lspkind.nvim",
-		"giuxtaposition/blink-cmp-copilot",
 	},
 	version = "*",
 	config = require("completion.blink"),
@@ -76,6 +75,10 @@ completion["zbirenbaum/copilot.lua"] = {
 	cmd = "Copilot",
 	event = "InsertEnter",
 	config = require("completion.copilot"),
+}
+
+completion["b0o/schemastore.nvim"] = {
+	lazy = true,
 }
 
 return completion
