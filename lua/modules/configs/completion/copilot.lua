@@ -1,22 +1,34 @@
 return function()
 	vim.defer_fn(function()
 		require("copilot").setup({
-			cmp = {
-				enabled = true,
-				method = "getCompletionsCycling",
-			},
-			panel = {
-				-- if true, it can interfere with completions in copilot-cmp
-				enabled = false,
-			},
+			-- I don't find the panel useful.
+			panel = { enabled = false },
 			suggestion = {
-				-- if true, it can interfere with completions in copilot-cmp
-				enabled = false,
+				enabled = true,
+				auto_trigger = true,
+				-- Use alt to interact with Copilot.
+				keymap = {
+					-- Re-enable accept since we're not using nvim-cmp integration
+					accept = "<M-a>",
+					accept_word = "<M-w>",
+					accept_line = "<M-l>",
+					next = "<M-]>",
+					prev = "<M-[>",
+					dismiss = "/",
+				},
 			},
 			filetypes = {
-				["dap-repl"] = false,
-				["big_file_disabled_ft"] = false,
+				markdown = true,
+				help = false,
+				gitcommit = false,
+				gitrebase = false,
+				hgcommit = false,
+				svn = false,
+				cvs = false,
+				["."] = false,
 			},
+			copilot_node_command = "node", -- Node.js version must be > 18.x
+			server_opts_overrides = {},
 		})
 	end, 100)
 end
