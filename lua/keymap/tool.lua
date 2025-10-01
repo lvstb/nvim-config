@@ -19,33 +19,24 @@ local plug_map = {
 	["n|gt"] = map_cr("Trouble diagnostics toggle focus=false filter.buf=0")
 		:with_noremap()
 		:with_silent()
-		:with_desc("lsp: Toggle trouble list"),
-	["n|<leader>tr"] = map_cr("TroubleToggle lsp_references")
+		:with_desc("lsp: Toggle buffer diagnostics"),
+	["n|<leader>tr"] = map_cr("Trouble lsp_references toggle")
 		:with_noremap()
 		:with_silent()
 		:with_desc("lsp: Show lsp references"),
-	["n|<leader>td"] = map_cr("TroubleToggle document_diagnostics")
+	["n|<leader>td"] = map_cr("Trouble diagnostics toggle filter.buf=0")
 		:with_noremap()
 		:with_silent()
-		:with_desc("lsp: Show document diagnostics"),
-	["n|<leader>tw"] = map_cr("TroubleToggle workspace_diagnostics")
+		:with_desc("lsp: Show buffer diagnostics"),
+	["n|<leader>tw"] = map_cr("Trouble diagnostics toggle")
 		:with_noremap()
 		:with_silent()
 		:with_desc("lsp: Show workspace diagnostics"),
-	["n|<leader>tq"] = map_cr("TroubleToggle quickfix")
+	["n|<leader>tq"] = map_cr("Trouble quickfix toggle")
 		:with_noremap()
 		:with_silent()
 		:with_desc("lsp: Show quickfix list"),
-	["n|<leader>tl"] = map_cr("TroubleToggle loclist"):with_noremap():with_silent():with_desc("lsp: Show loclist"),
-
-	-- Plugin: ChatGPT
-	["n|ac"] = map_cr("ChatGPT"):with_noremap():with_silent():with_desc("chatgpt: ChatGPT"),
-	["n|aa"] = map_cr("ChatGPTActAs"):with_noremap():with_silent():with_desc("chatgpt: Act as GPT"),
-	["n|ae"] = map_cr("ChatGPTEditWithInstructions")
-		:with_noremap()
-		:with_silent()
-		:with_desc("chatgpt: Edit with instructions"),
-	["n|ar"] = map_cr("ChatGPTRun"):with_noremap():with_silent():with_desc("chatgpt: GPT run ..."),
+	["n|<leader>tl"] = map_cr("Trouble loclist toggle"):with_noremap():with_silent():with_desc("lsp: Show loclist"),
 
 	-- Plugin: telescope
 	["n|<C-p>"] = map_callback(function()
@@ -60,12 +51,6 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("edit: Show undo history"),
-	["n|<leader>fp"] = map_callback(function()
-			require("telescope").extensions.projects.projects({})
-		end)
-		:with_noremap()
-		:with_silent()
-		:with_desc("find: Project"),
 	["n|<leader>fr"] = map_cu("Telescope oldfiles")
 		:with_noremap()
 		:with_silent()

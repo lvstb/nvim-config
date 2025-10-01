@@ -101,7 +101,16 @@ return function()
 			enabled = true,
 			win = {
 				position = "bottom",
-				height = 0.3,
+				height = 15, -- Match your previous size of 15 for horizontal
+				border = "rounded",
+			},
+		},
+		lazygit = {
+			enabled = true,
+			win = {
+				position = "float",
+				width = 0.9,
+				height = 0.9,
 				border = "rounded",
 			},
 		},
@@ -127,15 +136,6 @@ return function()
 	Snacks.toggle.inlay_hints():map("<leader>uh")
 	Snacks.toggle.indent():map("<leader>ug")
 	Snacks.toggle.dim():map("<leader>uD")
-
-	-- Set up keymaps for terminal
-	vim.keymap.set("n", "<leader>tt", function()
-		Snacks.terminal.toggle()
-	end, { desc = "Toggle terminal" })
-
-	vim.keymap.set("n", "<leader>tT", function()
-		Snacks.terminal.toggle(nil, { cwd = vim.fn.expand("%:p:h") })
-	end, { desc = "Toggle terminal (cwd)" })
 
 	-- Replace vim.notify with Snacks notifier
 	vim.notify = Snacks.notifier.notify
