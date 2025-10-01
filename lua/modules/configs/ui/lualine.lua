@@ -49,7 +49,6 @@ return function()
 			"nvim-dap-ui",
 			"fugitive",
 			outline,
-			diffview,
 		},
 	}
 

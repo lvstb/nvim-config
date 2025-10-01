@@ -20,10 +20,6 @@ editor["rhysd/clever-f.vim"] = {
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
 	config = require("editor.cleverf"),
 }
-editor["sindrets/diffview.nvim"] = {
-	lazy = true,
-	cmd = { "DiffviewOpen", "DiffviewClose" },
-}
 editor["junegunn/vim-easy-align"] = {
 	lazy = true,
 	cmd = "EasyAlign",
