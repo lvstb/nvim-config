@@ -7,6 +7,9 @@ end
 
 vim.lsp.enable(lsp_configs)
 
+-- Enable inline completions
+vim.lsp.inline_completion.enable(true)
+
 vim.diagnostic.config({
     virtual_text = true,
     underline = true,
