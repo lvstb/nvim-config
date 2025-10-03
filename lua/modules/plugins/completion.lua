@@ -25,12 +25,12 @@ completion["dnlhc/glance.nvim"] = {
 	event = "LspAttach",
 	config = require("completion.glance"),
 }
--- completion["zbirenbaum/copilot.lua"] = {
--- 	lazy = true,
--- 	cmd = "Copilot",
--- 	event = "InsertEnter",
--- 	config = require("completion.copilot"),
--- }
+completion["zbirenbaum/copilot.lua"] = {
+	lazy = true,
+	cmd = "Copilot",
+	event = "InsertEnter",
+	config = require("completion.copilot"),
+}
 completion["folke/sidekick.nvim"] = {
 	lazy = true,
 	event = "VeryLazy",
