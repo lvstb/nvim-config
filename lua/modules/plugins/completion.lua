@@ -33,7 +33,10 @@ completion["dnlhc/glance.nvim"] = {
 -- }
 completion["folke/sidekick.nvim"] = {
 	lazy = true,
-	config = require("completion.sidekick"),
+	event = "VeryLazy",
+	config = function()
+		require("completion.sidekick")
+	end,
 }
 completion["b0o/schemastore.nvim"] = {
 	lazy = true,
