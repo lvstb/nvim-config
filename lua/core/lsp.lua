@@ -7,8 +7,8 @@ end
 
 vim.lsp.enable(lsp_configs)
 
--- Enable inline completions
-vim.lsp.inline_completion.enable(true)
+-- Enable inline completions (commented out - not available in this Neovim version)
+-- vim.lsp.inline_completion.enable(true)
 
 vim.diagnostic.config({
     virtual_text = true,
