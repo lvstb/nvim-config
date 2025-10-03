@@ -37,6 +37,10 @@ completion["folke/sidekick.nvim"] = {
 	config = function()
 		require("completion.sidekick")
 	end,
+	dependencies = {
+		"folke/snacks.nvim", -- for better prompt selection
+		"nvim-treesitter/nvim-treesitter-textobjects", -- for function/class context
+	},
 }
 completion["b0o/schemastore.nvim"] = {
 	lazy = true,

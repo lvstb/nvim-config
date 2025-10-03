@@ -33,4 +33,10 @@ return function()
 			},
 		},
 	})
+
+	-- Register group descriptions
+	local wk = require("which-key")
+	wk.add({
+		{ "<leader>a", group = "AI/Sidekick", icon = "🤖" },
+	})
 end
