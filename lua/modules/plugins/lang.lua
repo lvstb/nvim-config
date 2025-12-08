@@ -16,6 +16,6 @@ lang["ThePrimeagen/refactoring.nvim"] = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 	},
-	config = require("configs.lang.refactoring"),
+	config = require("lang.refactoring"),
 }
 return lang
