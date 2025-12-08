@@ -55,15 +55,7 @@ tool["nvim-telescope/telescope.nvim"] = {
 		{ "nvim-telescope/telescope-live-grep-args.nvim" },
 	},
 }
-tool["ThePrimeagen/refactoring.nvim"] = {
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"nvim-treesitter/nvim-treesitter",
-	},
-	config = function()
-		require("refactoring").setup()
-	end,
-}
+
 
 ----------------------------------------------------------------------
 --                           DAP Plugins                            --
