@@ -1,0 +1,35 @@
+name: Update nvim plugins
+
+on:
+  workflow_dispatch: # Manual trigger
+  schedule:
+    - cron: '0 0 * * 0' # Weekly on Sunday at midnight
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Neovim
+        run: |
+          curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+          sudo tar -C /opt -xzf nvim-linux64.tar.gz
+          sudo ln -sf /opt/nvim-linux64/bin/nvim /usr/local/bin/nvim
+          nvim --version
+      
+      - name: Update plugins
+        run: |
+          nvim --headless "+Lazy! sync" +qa || true
+          
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore: update nvim plugin dependencies"
+          title: "Update nvim plugins"
+          body: |
+            Automated update of nvim plugin dependencies via lazy.nvim
+            
+            Review the changes to `lazy-lock.json` to see which plugins were updated.
+          branch: update-nvim-plugins
+          delete-branch: true
