@@ -138,11 +138,11 @@ local load_core = function()
 	shell_config()
 
 	require("core.options")
-	require("core.lsp")
 	require("core.mapping")
 	require("keymap")
 	require("core.event")
 	require("core.pack")
+	require("core.lsp")
 
 	local colorscheme = require("core.settings").colorscheme
 	local background = require("core.settings").background
