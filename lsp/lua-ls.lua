@@ -1,4 +1,6 @@
-local blink = require("blink.cmp")
+local ok, blink = pcall(require, "blink.cmp")
+local blink_capabilities = ok and blink.get_lsp_capabilities() or {}
+
 return {
     cmd = { "lua-language-server" },
     filetypes = { "lua" },
@@ -35,7 +37,7 @@ return {
         "force",
         {},
         vim.lsp.protocol.make_client_capabilities(),
-        blink.get_lsp_capabilities(),
+        blink_capabilities,
         {
             fileOperations = {
                 didRename = true,
