@@ -26,7 +26,7 @@ return function()
 			globalstatus = true,
 			component_separators = "",
 			section_separators = "",
-			theme = "catppuccin",
+			theme = "catppuccin-nvim",
 		},
 		sections = {
 			lualine_a = {},
