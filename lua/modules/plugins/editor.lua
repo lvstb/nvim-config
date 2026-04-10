@@ -42,26 +42,26 @@ editor["lambdalisue/suda.vim"] = {
 ----------------------------------------------------------------------
 --                  :treesitter related plugins                    --
 ----------------------------------------------------------------------
--- editor["nvim-treesitter/nvim-treesitter"] = {
--- 	lazy = false,
--- 	build = ":TSUpdate",
--- 	config = require("editor.treesitter"),
--- 	dependencies = {
--- 		{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
--- 		{ "nvim-treesitter/nvim-treesitter-context" },
--- 		-- { "JoosepAlviste/nvim-ts-context-commentstring" },
--- 		{ "mfussenegger/nvim-treehopper" },
--- 		{ "andymass/vim-matchup" },
--- 		{
--- 			"windwp/nvim-ts-autotag",
--- 			config = require("editor.autotag"),
--- 		},
--- 		{
--- 			"NvChad/nvim-colorizer.lua",
--- 			config = require("editor.colorizer"),
--- 		},
--- 	},
--- }
+editor["nvim-treesitter/nvim-treesitter"] = {
+	lazy = false,
+	build = ":TSUpdate",
+	config = require("editor.treesitter"),
+	dependencies = {
+		{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
+		{ "nvim-treesitter/nvim-treesitter-context" },
+		-- { "JoosepAlviste/nvim-ts-context-commentstring" },
+		{ "mfussenegger/nvim-treehopper" },
+		{ "andymass/vim-matchup" },
+		{
+			"windwp/nvim-ts-autotag",
+			config = require("editor.autotag"),
+		},
+		{
+			"NvChad/nvim-colorizer.lua",
+			config = require("editor.colorizer"),
+		},
+	},
+}
 editor["HiPhish/rainbow-delimiters.nvim"] = {
 	lazy = true,
 	event = "BufReadPost",

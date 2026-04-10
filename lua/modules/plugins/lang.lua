@@ -14,7 +14,7 @@ lang["ThePrimeagen/refactoring.nvim"] = {
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		-- "nvim-treesitter/nvim-treesitter",
+		"nvim-treesitter/nvim-treesitter",
 	},
 	config = require("lang.refactoring"),
 }
