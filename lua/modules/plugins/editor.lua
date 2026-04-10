@@ -44,15 +44,10 @@ editor["lambdalisue/suda.vim"] = {
 ----------------------------------------------------------------------
 editor["nvim-treesitter/nvim-treesitter"] = {
 	lazy = false,
-	build = function()
-		if #vim.api.nvim_list_uis() ~= 0 then
-			vim.api.nvim_command("TSUpdate")
-		end
-	end,
-	event = { "CursorHold", "CursorHoldI" },
+	build = ":TSUpdate",
 	config = require("editor.treesitter"),
 	dependencies = {
-		{ "nvim-treesitter/nvim-treesitter-textobjects" },
+		{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
 		{ "nvim-treesitter/nvim-treesitter-context" },
 		-- { "JoosepAlviste/nvim-ts-context-commentstring" },
 		{ "mfussenegger/nvim-treehopper" },

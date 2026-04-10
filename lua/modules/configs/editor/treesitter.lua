@@ -1,89 +1,85 @@
 return function()
-	local use_ssh = require("core.settings").use_ssh
+	local ts = require("nvim-treesitter")
+	local ts_textobjects = require("nvim-treesitter-textobjects")
+	local group = vim.api.nvim_create_augroup("NvimTreesitterSetup", { clear = true })
 
-	vim.api.nvim_set_option_value("foldmethod", "expr", {})
-	vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", {})
-
-	require("nvim-treesitter.configs").setup({
-		-- ensure_installed = {
-		-- 	"bash",
-		-- 	"css",
-		-- 	"go",
-		-- 	"gomod",
-		-- 	"html",
-		-- 	"javascript",
-		-- 	"json",
-		-- 	"lua",
-		-- 	"make",
-		-- 	"markdown",
-		-- 	"markdown_inline",
-		-- 	"python",
-		-- 	"rust",
-		-- 	"typescript",
-		-- 	"java",
-		-- 	"vimdoc",
-		-- 	"templ",
-		-- 	"yaml",
-		-- },
-		-- auto_install = true,
-		-- sync_install = true,
-		-- ignore_install = {},
-		highlight = {
-			enable = true,
-			disable = function(ft, bufnr)
-				if vim.tbl_contains({ "vim" }, ft) then
-					return true
-				end
-
-				local ok, is_large_file = pcall(vim.api.nvim_buf_get_var, bufnr, "bigfile_disable_treesitter")
-				return ok and is_large_file
-			end,
-		},
-		textobjects = {
-			select = {
-				enable = true,
-				keymaps = {
-					["af"] = "@function.outer",
-					["if"] = "@function.inner",
-					["ac"] = "@class.outer",
-					["ic"] = "@class.inner",
-				},
-			},
-			move = {
-				enable = true,
-				set_jumps = true, -- whether to set jumps in the jumplist
-				goto_next_start = {
-					["]["] = "@function.outer",
-					["]m"] = "@class.outer",
-				},
-				goto_next_end = {
-					["]]"] = "@function.outer",
-					["]M"] = "@class.outer",
-				},
-				goto_previous_start = {
-					["[["] = "@function.outer",
-					["[m"] = "@class.outer",
-				},
-				goto_previous_end = {
-					["[]"] = "@function.outer",
-					["[M"] = "@class.outer",
-				},
-			},
-		},
-		rainbow = {
-			enable = true,
-			extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
-			max_file_lines = 2000, -- Do not enable for files with more than 2000 lines, int
-		},
-		context_commentstring = { enable = true, enable_autocmd = false },
-		indent = { enable = true },
-		matchup = { enable = true },
+	ts.setup({
+		install_dir = vim.fn.stdpath("data") .. "/site",
 	})
-	-- require("nvim-treesitter.install").prefer_git = true
-	-- if use_ssh then
-	-- 	local parsers = require("nvim-treesitter.parsers").get_parser_configs()
-	-- 	for _, p in pairs(parsers) do
-	-- 		p.install_info.url = p.install_info.url:gsub("https://github.com/", "git@github.com:")
-	-- 	end
-	-- end
+
+	ts_textobjects.setup({
+		select = {
+			lookahead = true,
+		},
+		move = {
+			set_jumps = true,
+		},
+	})
+
+	vim.api.nvim_create_autocmd("FileType", {
+		group = group,
+		callback = function(args)
+			if vim.tbl_contains({ "vim" }, args.match) then
+				return
+			end
+
+			local ok, is_large_file = pcall(vim.api.nvim_buf_get_var, args.buf, "bigfile_disable_treesitter")
+			if ok and is_large_file then
+				return
+			end
+
+			local lang = vim.treesitter.language.get_lang(args.match) or args.match
+			local has_parser = vim.treesitter.language.add(lang)
+			if not has_parser then
+				return
+			end
+
+			vim.treesitter.start(args.buf, lang)
+			vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+			vim.wo[0][0].foldmethod = "expr"
+			vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+		end,
+	})
+
+	local select = require("nvim-treesitter-textobjects.select")
+	local move = require("nvim-treesitter-textobjects.move")
+	local map = vim.keymap.set
+
+	map({ "x", "o" }, "af", function()
+		select.select_textobject("@function.outer", "textobjects")
+	end)
+	map({ "x", "o" }, "if", function()
+		select.select_textobject("@function.inner", "textobjects")
+	end)
+	map({ "x", "o" }, "ac", function()
+		select.select_textobject("@class.outer", "textobjects")
+	end)
+	map({ "x", "o" }, "ic", function()
+		select.select_textobject("@class.inner", "textobjects")
+	end)
+
+	map({ "n", "x", "o" }, "][", function()
+		move.goto_next_start("@function.outer", "textobjects")
+	end)
+	map({ "n", "x", "o" }, "]m", function()
+		move.goto_next_start("@class.outer", "textobjects")
+	end)
+	map({ "n", "x", "o" }, "]]", function()
+		move.goto_next_end("@function.outer", "textobjects")
+	end)
+	map({ "n", "x", "o" }, "]M", function()
+		move.goto_next_end("@class.outer", "textobjects")
+	end)
+	map({ "n", "x", "o" }, "[[", function()
+		move.goto_previous_start("@function.outer", "textobjects")
+	end)
+	map({ "n", "x", "o" }, "[m", function()
+		move.goto_previous_start("@class.outer", "textobjects")
+	end)
+	map({ "n", "x", "o" }, "[]", function()
+		move.goto_previous_end("@function.outer", "textobjects")
+	end)
+	map({ "n", "x", "o" }, "[M", function()
+		move.goto_previous_end("@class.outer", "textobjects")
+	end)
 end
