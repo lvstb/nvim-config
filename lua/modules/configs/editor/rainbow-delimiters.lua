@@ -5,6 +5,16 @@ return function()
 			[""] = rainbow_delimiters.strategy["global"],
 			vim = rainbow_delimiters.strategy["local"],
 		},
+		condition = function(bufnr)
+			local lang = vim.treesitter.language.get_lang(vim.bo[bufnr].filetype)
+			if not lang then
+				return false
+			end
+
+			-- Some custom filetypes map to a Treesitter language name without an installed parser.
+			local ok, parser = pcall(vim.treesitter.get_parser, bufnr, lang)
+			return ok and parser ~= nil
+		end,
 		query = {
 			[""] = "rainbow-delimiters",
 			lua = "rainbow-blocks",
@@ -20,4 +30,3 @@ return function()
 		-- },
 	})
 end
-

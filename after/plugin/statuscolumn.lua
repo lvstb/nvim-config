@@ -56,11 +56,29 @@ local function get_name_from_group(bufnum, lnum, group)
 	return get_sign_name(cur_sign_tbl)
 end
 
-_G.get_statuscol_gitsign = function(bufnr, lnum)
-	local cur_sign_nm = get_name_from_group(bufnr, lnum, "gitsigns_vimfn_signs_")
+local function get_gitsigns_extmark(bufnr, lnum)
+	local namespaces = vim.api.nvim_get_namespaces()
 
-	if cur_sign_nm ~= nil then
-		return mk_hl(gitsigns_hl_pool[cur_sign_nm], gitsigns_bar)
+	for _, ns_name in ipairs({ "gitsigns_signs_", "gitsigns_signs_staged" }) do
+		local ns = namespaces[ns_name]
+		if ns then
+			local marks = vim.api.nvim_buf_get_extmarks(bufnr, ns, { lnum - 1, 0 }, { lnum - 1, -1 }, {
+				details = true,
+				limit = 1,
+			})
+			local mark = marks[1]
+			if mark and mark[4] and mark[4].sign_hl_group then
+				return mark[4]
+			end
+		end
+	end
+end
+
+_G.get_statuscol_gitsign = function(bufnr, lnum)
+	local mark = get_gitsigns_extmark(bufnr, lnum)
+
+	if mark ~= nil then
+		return mk_hl(gitsigns_hl_pool[mark.sign_hl_group] or mark.sign_hl_group, gitsigns_bar)
 	else
 		return " "
 	end
@@ -107,3 +125,5 @@ _G.get_statuscol = function()
 end
 
 vim.opt.statuscolumn = "%!v:lua.get_statuscol()"
+-- probe
+-- probe
