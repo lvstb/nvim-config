@@ -106,7 +106,7 @@ return function()
 			},
 		},
 		lazygit = {
-			enabled = true,
+			enabled = vim.fn.executable("lazygit") == 1,
 			win = {
 				position = "float",
 				width = 0.9,
