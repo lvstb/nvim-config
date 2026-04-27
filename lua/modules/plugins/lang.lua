@@ -13,6 +13,7 @@ lang["ThePrimeagen/refactoring.nvim"] = {
 	lazy = true,
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
 	dependencies = {
+		"lewis6991/async.nvim",
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 	},

@@ -22,7 +22,6 @@ return function()
 		"html",
 		"javascript",
 		"json",
-		"jsonc",
 		"lua",
 		"luadoc",
 		"luap",
