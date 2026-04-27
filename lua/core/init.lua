@@ -58,6 +58,8 @@ local disable_distribution_plugins = function()
 	-- Do not use builtin matchit.vim and matchparen.vim since the use of vim-matchup
 	vim.g.loaded_matchit = 1
 	vim.g.loaded_matchparen = 1
+	-- Defer matchparen highlighting to CursorHold to avoid treesitter injection parsing errors
+	vim.g.matchup_matchparen_deferred = 1
 
 	-- Disable sql omni completion.
 	vim.g.loaded_sql_completion = 1
