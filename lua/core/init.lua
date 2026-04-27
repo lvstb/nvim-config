@@ -60,6 +60,10 @@ local disable_distribution_plugins = function()
 	vim.g.loaded_matchparen = 1
 	-- Defer matchparen highlighting to CursorHold to avoid treesitter injection parsing errors
 	vim.g.matchup_matchparen_deferred = 1
+	-- vim-matchup's treesitter engine calls nvim-treesitter master-only
+	-- query predicates that no longer exist on `main` (and that crash on
+	-- Neovim 0.12). Force matchup to use its built-in regex engine.
+	vim.g.matchup_treesitter_enabled = 0
 
 	-- Disable sql omni completion.
 	vim.g.loaded_sql_completion = 1
