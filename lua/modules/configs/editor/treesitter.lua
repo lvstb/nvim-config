@@ -1,18 +1,16 @@
 return function()
 	local ts = require("nvim-treesitter")
-	local ts_textobjects = require("nvim-treesitter-textobjects")
+	local configs = require("nvim-treesitter.configs")
 	local group = vim.api.nvim_create_augroup("NvimTreesitterSetup", { clear = true })
 
-	ts.setup({
-		install_dir = vim.fn.stdpath("data") .. "/site",
-	})
+	ts.setup()
 
-	ts_textobjects.setup({
-		select = {
-			lookahead = true,
-		},
-		move = {
-			set_jumps = true,
+	configs.setup({
+		parser_install_dir = vim.fn.stdpath("data") .. "/site",
+		textobjects = {
+			select = {
+				lookahead = true,
+			},
 		},
 	})
 
@@ -41,8 +39,8 @@ return function()
 		end,
 	})
 
-	local select = require("nvim-treesitter-textobjects.select")
-	local move = require("nvim-treesitter-textobjects.move")
+	local select = require("nvim-treesitter.textobjects.select")
+	local move = require("nvim-treesitter.textobjects.move")
 	local map = vim.keymap.set
 
 	map({ "x", "o" }, "af", function()
