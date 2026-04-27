@@ -1,19 +1,47 @@
 return function()
-	local ts = require("nvim-treesitter")
-	local configs = require("nvim-treesitter.configs")
+	local nts = require("nvim-treesitter")
 	local group = vim.api.nvim_create_augroup("NvimTreesitterSetup", { clear = true })
 
-	ts.setup()
-
-	configs.setup({
-		parser_install_dir = vim.fn.stdpath("data") .. "/site",
-		textobjects = {
-			select = {
-				lookahead = true,
-			},
-		},
+	-- Optional setup; default install_dir is fine but we mirror the previous explicit value.
+	nts.setup({
+		install_dir = vim.fn.stdpath("data") .. "/site",
 	})
 
+	-- Parsers to ensure are installed. Add/remove as needed.
+	-- This runs asynchronously and is a no-op for parsers already present.
+	nts.install({
+		"bash",
+		"c",
+		"cpp",
+		"css",
+		"diff",
+		"dockerfile",
+		"go",
+		"gomod",
+		"gosum",
+		"html",
+		"javascript",
+		"json",
+		"jsonc",
+		"lua",
+		"luadoc",
+		"luap",
+		"markdown",
+		"markdown_inline",
+		"nix",
+		"python",
+		"query",
+		"regex",
+		"rust",
+		"toml",
+		"tsx",
+		"typescript",
+		"vim",
+		"vimdoc",
+		"yaml",
+	})
+
+	-- Enable treesitter features per-buffer on FileType.
 	vim.api.nvim_create_autocmd("FileType", {
 		group = group,
 		callback = function(args)
@@ -39,8 +67,18 @@ return function()
 		end,
 	})
 
-	local select = require("nvim-treesitter.textobjects.select")
-	local move = require("nvim-treesitter.textobjects.move")
+	-- nvim-treesitter-textobjects (main branch) requires its own setup.
+	require("nvim-treesitter-textobjects").setup({
+		select = {
+			lookahead = true,
+		},
+		move = {
+			set_jumps = true,
+		},
+	})
+
+	local select = require("nvim-treesitter-textobjects.select")
+	local move = require("nvim-treesitter-textobjects.move")
 	local map = vim.keymap.set
 
 	map({ "x", "o" }, "af", function()

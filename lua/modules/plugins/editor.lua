@@ -44,6 +44,7 @@ editor["lambdalisue/suda.vim"] = {
 ----------------------------------------------------------------------
 editor["nvim-treesitter/nvim-treesitter"] = {
 	lazy = false,
+	branch = "main",
 	build = ":TSUpdate",
 	config = require("editor.treesitter"),
 	dependencies = {
